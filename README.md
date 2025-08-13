@@ -1,85 +1,96 @@
 # Hybrid-Crypto-Steganography
 
-A modern, browser-based application that provides multi-layer security by combining classical cryptography (Hill Cipher), modern block ciphers (SDES), and digital steganography (LSB). This tool allows users to encrypt a message twice before hiding it invisibly within an image file.
+Overview
+
+Hybrid-Crypto-Steganography Suite is a client-side web application that provides a multi-layered security solution for digital text by integrating classical cryptography, modern encryption, and steganography.
+The tool runs entirely in the user’s browser, ensuring data privacy by performing all operations locally without transmitting sensitive information over the network.
+
+The encryption process consists of:
+
+    Hill Cipher – Classical, matrix-based encryption.
+
+    Simplified DES (SDES) – Block cipher for additional computational security.
+
+    LSB Steganography – Concealing the encrypted text in an image's pixel data.
 
 Features
-Multi-Layer Security: Implements a robust three-step security process:
+Layered Encryption Model
 
-Hill Cipher Encryption: A classical matrix-based cipher for the first layer of text scrambling.
+    Hill Cipher – Matrix-based polygraphic substitution cipher for the first encryption layer.
 
-SDES Encryption: A simplified version of the Data Encryption Standard (DES) to encrypt the output of the Hill Cipher, adding bit-level complexity.
+    Simplified DES (SDES) – 8-bit block cipher to increase computational complexity.
 
-LSB Steganography: Hides the final ciphertext within a cover image by modifying the least significant bits of its pixels, making the data invisible to the naked eye.
+    LSB Steganography – Conceals ciphertext inside image pixels using the Least Significant Bit technique.
 
-Interactive & Modern UI:
+Interactive User Interface
 
-A sleek glassmorphism design with an animated gradient background.
+    Modern glassmorphism UI with animated backgrounds.
 
-Drag-and-Drop file uploads for a seamless user experience.
+    Drag-and-drop file upload support.
 
-Live Key Validation with instant visual feedback to ensure keys meet the required format before processing.
+    Real-time cryptographic key validation to avoid errors.
 
-Asynchronous Processing with loading spinners on buttons, preventing the UI from freezing during intensive operations.
+Privacy by Design
 
-Client-Side Processing: All operations run directly in the browser using JavaScript. No server is needed, ensuring user data remains private and secure on their local machine.
-
-Cross-Platform: As a web application, it runs on any modern browser (Chrome, Firefox, Edge, etc.) on any operating system (Windows, macOS, Linux).
+    100% client-side architecture – All encryption, decryption, and steganography operations are performed locally via JavaScript.
 
 Technology Stack
-Frontend: HTML5
 
-Styling: CSS3 (including Flexbox, Grid, and custom animations)
+    Frontend: HTML5
 
-Logic & Algorithms: JavaScript (ES6+)
+    Styling: CSS3 (Flexbox, Grid, Animations)
 
-APIs: Browser File API, Drag and Drop API, and the HTML Canvas API for image pixel manipulation.
+    Core Logic: JavaScript (ES6+)
 
-How to Run Locally
-No complex setup is required. Follow these simple steps:
+    Browser APIs: File API, Drag & Drop API, Canvas API
 
-Clone or Download: Get the project files (index.html, style.css, script.js) and place them all in a single folder.
+Operational Workflow
+Stage 1: Algebraic Transformation (Hill Cipher)
 
-Open in Browser: Double-click the index.html file.
+    Converts plaintext into letter blocks.
 
-Ready: The application will open in your default web browser, ready to use.
+    Applies matrix multiplication for encryption.
 
-How It Works
-The application secures your message by passing it through a chain of three distinct security modules.
+    Obscures character frequency patterns.
 
-Text Scrambling (Hill Cipher): Your plaintext message is first transformed using matrix multiplication. This scrambles the letter frequencies, making it resistant to basic analysis.
+Stage 2: Bit-Level Encryption (SDES)
 
-HELLO → (Hill Cipher w/ Key) → IFMMP (Example)
+    Takes Hill Cipher output and converts it to 8-bit binary.
 
-Bit-Level Encryption (SDES): Each character of the scrambled text is then converted into 8 bits and put through the SDES algorithm. This function performs complex permutations and substitutions on the bits, making the output non-readable and highly secure.
+    Performs permutations and substitutions based on a 10-bit SDES key.
 
-IFMMP → (SDES w/ Key) → ©ñµµÄ (Example non-printable characters)
+Stage 3: Data Concealment (LSB Steganography)
 
-Concealment (LSB Steganography): The final, fully encrypted message is converted into a binary stream and embedded into the least significant bits of the cover image's pixels. This hides the existence of the message entirely.
+    Converts the final ciphertext into a binary stream.
 
-Decryption is the exact reverse of this process, using the same keys to unlock each layer.
+    Embeds bits into RGB pixel values of the cover image.
 
-Example Usage
-To Encrypt a Message:
-Message: Enter your secret message (e.g., SECRET).
+    Produces a visually indistinguishable stego-image.
 
-Hill Cipher Key: Enter a valid 4-number key (e.g., 3 3 2 5).
+Decryption follows the reverse sequence using the same keys.
+Usage Guide
+Encryption
 
-SDES Key: Enter a 10-bit key (e.g., 1010000010).
+    Input Message: Enter plaintext in the text area.
 
-Image: Drag-and-drop or click to upload a cover image (e.g., a .png file).
+    Provide Keys: Enter:
 
-Click Encrypt & Hide.
+        Hill Cipher key – 4 numbers (matrix form).
 
-Download the resulting stego-image.png.
+        SDES key – 10-bit binary.
 
-To Decrypt a Message:
-Image: Upload the stego-image.png you just saved.
+    Upload Image: PNG or BMP format (drag-and-drop or file selector).
 
-Keys: Enter the exact same keys used for encryption (3 3 2 5 and 1010000010).
+    Execute: Click "Encrypt & Hide".
 
-Click Extract & Decrypt.
+    Download: Save the generated stego-image.
 
-The original message, SECRET, will appear in the result box.
+Decryption
 
-License
-This project is licensed under the MIT License. See the LICENSE.md file for details.
+    Upload Stego-Image: PNG or BMP containing hidden data.
+
+    Provide Keys: Same Hill Cipher and SDES keys used for encryption.
+
+    Execute: Click "Extract & Decrypt".
+
+    View Result: Original plaintext appears in the result area.
